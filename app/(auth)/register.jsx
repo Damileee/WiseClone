@@ -1,71 +1,33 @@
-import { Keyboard, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native'
-import { Link } from 'expo-router'
-import { Colors } from '../../constants/Colors'
-import { useState } from 'react'
+import { View, Text, Pressable, TextInput } from 'react-native';
+import { Link, router } from 'expo-router';
 
-import ThemedView from '../../components/ThemedView'
-import ThemedText from '../../components/ThemedText'
-import Spacer from '../../components/Spacer'
-import ThemedButton from '../../components/ThemedButton'
-import ThemedTextInput from '../../components/ThemedTextInput'
-
-const Register = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  
-
-  const handleSubmit = () => {
-    console.log("Register form submitted", email, password);
-  }
-
+export default function Register() {
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <ThemedView style={styles.container}>
-        <Spacer />
-        <ThemedText title={true} style={styles.title}>
-          Register an Account
-        </ThemedText>
-
-        <ThemedTextInput
-          style={{ width: "80%", marginBottom: 20 }}
+    <View className="flex-1 items-center justify-center p-4 bg-white">
+      <Text className="text-3xl font-bold text-center mb-8">Create Account</Text>
+      
+      <View className="w-full max-w-xs">
+        <TextInput
           placeholder="Email"
-          keyboardType="email-address"
-          onChangeText={setEmail}
-          value={email}
+          className="p-4 border rounded-lg mb-4"
         />
-
-        <ThemedTextInput
-          style={{ width: "80%", marginBottom: 20 }}
+        <TextInput
           placeholder="Password"
-          secureTextEntry={true}
-          onChangeText={setPassword}
-          value={password}
+          secureTextEntry
+          className="p-4 border rounded-lg mb-6"
         />
 
-        <ThemedButton onPress={handleSubmit}>
-          <Text style={{ color: "#f2f2f2" }}>Register</Text>
-        </ThemedButton>
+        <Pressable
+          onPress={() => router.replace('/(tabs)')}
+          className="bg-blue-500 p-4 rounded-lg items-center mb-4"
+        >
+          <Text className="text-white font-bold">Register</Text>
+        </Pressable>
 
-        <Spacer height={100} />
-        <Link href="/login" replace>
-          <ThemedText style={{ textAlign: "center" }}>Login instead</ThemedText>
+        <Link href="/login" className="text-blue-500 text-center">
+          Already have an account? Log in
         </Link>
-      </ThemedView>
-    </TouchableWithoutFeedback>
+      </View>
+    </View>
   );
-};
-
-export default Register;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    textAlign: "center",
-    fontSize: 18,
-    marginBottom: 30,
-  },
-});
+}
