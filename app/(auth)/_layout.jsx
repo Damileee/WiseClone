@@ -1,13 +1,13 @@
-import { Stack } from "expo-router"
-import { StatusBar } from "react-native"
+import { Stack } from 'expo-router';
 
 export default function AuthLayout() {
   return (
-    <>
-      <StatusBar style="auto" />
-      <Stack 
-        screenOptions={{ headerShown: false, animation: "none" }} 
-      />
-    </>
-  )
+    <Stack
+      screenOptions={{ headerShown: false }}
+      initialRouteName="login" // First screen in auth group
+    >
+      <Stack.Screen name="login" />
+      <Stack.Screen name="register" />
+    </Stack>
+  );
 }
