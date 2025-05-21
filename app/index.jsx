@@ -1,53 +1,73 @@
-import { StyleSheet } from 'react-native';
-import { Link } from 'expo-router';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
+import { router } from 'expo-router';
+import { MaterialIcons } from '@expo/vector-icons';
+import { scale, verticalScale, moderateScale, getResponsiveFont} from '../utils/responsive';
 
-// themed components
+import ThemedWorldImg from '../components/ThemedWorldImg';
 import ThemedView from '../components/ThemedView';
-import ThemedLogo from '../components/ThemedLogo';
-import ThemedText from '../components/ThemedText';
-import Spacer from '../components/Spacer';
+import PrimaryButton from '../components/PrimaryButton';
 
-const Home = () => {
-    return (
-        <ThemedView style={styles.container}>
-            <ThemedLogo />
-            <Spacer />
+export default function HomeScreen() {
+    const colorScheme = useColorScheme();
+    const  theme = colorScheme === 'dark' ? true : false;
+  return (
+    <ThemedView style={styles.container} safe={true} >
 
-            <ThemedText style={styles.title} title={true}>
-                The Number 1
-            </ThemedText>
+      <ThemedView style={[styles.topBar, { backgroundColor: theme ? '#9FE870' : '#163300' } ]} />
 
-            <Spacer height={10}/>
-            <ThemedText>Reading List App</ThemedText>
-            <Spacer />
+      <View style={styles.balanceContainer}>
+        <ThemedWorldImg style={styles.image}/>
+      </View>
+    
+        <View style={styles.balanceContainer}>
+            <Text style={[styles.headerText, { color: theme ? '#fff' : '#163300' }]}>
+                ONE ACCOUNT FOR{"\n"}ALL THE MONEY IN{"\n"}THE WORLD
+            </Text>
+        </View>
 
-            <Link href="/login" style={styles.link}>
-                <ThemedText>Login Page</ThemedText>
-            </Link>
-            <Link href="/register" style={styles.link}>
-                <ThemedText>Register Page</ThemedText>
-            </Link>
-            <Link href="/profile" style={styles.link}>
-                <ThemedText>Profile Page</ThemedText>
-            </Link>
-        </ThemedView>
-    );
-};
+      <View style={styles.actionsRow}>
+        <PrimaryButton title="Log in" onPress={() => router.push('/login')} width='50%' />
+        <PrimaryButton title="Register" onPress={() => router.push('/register')} width='50%' />
+      </View>
+      <PrimaryButton
+        title="Continue with Facebook"
+        onPress={() => console.log('Facebook')}
+        backgroundColor={theme ? '#9FE870' : '#163300'}
+        color={theme ? '#9FE870' : '#163300'}
+        border={true}
+      />
+    </ThemedView>
+  );
+}
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 18,
-    },
-    link: {
-        marginVertical: 10,
-        borderBottomWidth: 1,
-    }
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  topBar: {
+    borderRadius: 16,
+    marginBottom: 30,
+    marginTop: 38,
+    padding: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerText: {
+    fontSize: getResponsiveFont(),
+    marginTop: verticalScale(135),
+    lineHeight: verticalScale(33),
+    textAlign: 'center',
+    fontWeight: '900',
+  },
+  image: {
+    width: scale(350),
+    height: verticalScale(210),
+    marginTop: verticalScale(50),
+  },
+  actionsRow: {
+    flexDirection: 'row',
+    gap: scale(8),
+    marginTop: verticalScale(50),
+  },
 });
-
-export default Home;
