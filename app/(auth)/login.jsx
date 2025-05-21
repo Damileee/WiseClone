@@ -1,80 +1,133 @@
-import { StyleSheet, Text } from 'react-native'
-import { Link } from 'expo-router'
-import { Colors } from '../../constants/Colors'
-import { useState } from 'react'
+import { View, Text, Pressable, TextInput, StyleSheet } from 'react-native';
+import { Link, router } from 'expo-router';
+import { MaterialIcons } from '@expo/vector-icons';
 
-import ThemedView from '../../components/ThemedView'
-import ThemedText from '../../components/ThemedText'
-import Spacer from '../../components/Spacer'
-import ThemedButton from '../../components/ThemedButton'
-import ThemedTextInput from '../../components/ThemedTextInput'
-
-const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleSubmit = () => {
-    console.log("Login form submitted", email, password);
-  }
-
+export default function Login() {
   return (
-    <ThemedView style={styles.container}>
-      
-      <Spacer />
-      <ThemedText title={true} style={styles.title}>
-        Login to Your Account
-      </ThemedText>
+    <View style={styles.container}>
+      {/* Header */}
+      <Text style={styles.headerText}>
+        ONE ACCOUNT FOR{"\n"}ALL THE MONEY IN{"\n"}THE WORLD
+      </Text>
 
-      <ThemedTextInput 
-        style={{ width: "80%", marginBottom: 20 }}
-        placeholder='Email' 
-        keyboardType='email-address'
-        onChangeText={setEmail}
-        value={email}
-      />
+      {/* Login Form */}
+      <View style={styles.formContainer}>
+        <TextInput
+          placeholder="Your email"
+          style={styles.input}
+          placeholderTextColor="#666"
+        />
+        <TextInput
+          placeholder="Password"
+          secureTextEntry
+          style={styles.input}
+          placeholderTextColor="#666"
+        />
 
-      <ThemedTextInput
-        style={{ width: "80%", marginBottom: 20 }}
-        placeholder='Password' 
-        secureTextEntry={true}
-        onChangeText={setPassword}
-        value={password}
-      />
+        {/* Login Button */}
+        <Pressable
+          onPress={() => router.replace('/(tabs)')}
+          style={styles.loginButton}
+        >
+          <Text style={styles.buttonText}>Log in</Text>
+        </Pressable>
 
-      <ThemedButton onPress={handleSubmit}>
-        <Text style={{ color: '#f2f2f2' }}>Login</Text>
-      </ThemedButton>
+        {/* Trouble Login Link */}
+        <Link href="/forgot-password" style={styles.link}>
+          <Text style={styles.linkText}>Trouble logging in?</Text>
+        </Link>
 
-      <Spacer height={100} />
-      <Link href="/register" replace>
-        <ThemedText style={{ textAlign: "center" }}>
-          Register instead
-        </ThemedText>
-      </Link>
+        {/* Separator */}
+        <View style={styles.separator}>
+          <View style={styles.separatorLine} />
+          <Text style={styles.separatorText}>Or log in with</Text>
+          <View style={styles.separatorLine} />
+        </View>
 
-    </ThemedView>
-  )
+        {/* Facebook Login */}
+        <Pressable style={styles.facebookButton}>
+          <MaterialIcons name="facebook" size={24} color="#1877F2" />
+          <Text style={styles.facebookText}>Continue with Facebook</Text>
+        </Pressable>
+      </View>
+    </View>
+  );
 }
-
-export default Login;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: '#fff',
+    padding: 20,
+    justifyContent: 'center',
   },
-  title: {
-    textAlign: "center",
-    fontSize: 18,
-    marginBottom: 30
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 40,
+    color: '#000',
   },
-  btn: {
-    backgroundColor: Colors.primary,
-    padding: 15,
-    borderRadius: 5,
+  formContainer: {
+    width: '100%',
+    maxWidth: 400,
+    alignSelf: 'center',
   },
-  pressed: {
-    opacity: 0.8,
+  input: {
+    height: 50,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    marginBottom: 15,
+    fontSize: 16,
   },
-})
+  loginButton: {
+    backgroundColor: '#00B9FF',
+    height: 50,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  link: {
+    marginVertical: 15,
+    alignSelf: 'center',
+  },
+  linkText: {
+    color: '#00B9FF',
+    fontSize: 14,
+  },
+  separator: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  separatorLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#ddd',
+  },
+  separatorText: {
+    marginHorizontal: 10,
+    color: '#666',
+    fontSize: 14,
+  },
+  facebookButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    paddingVertical: 15,
+  },
+  facebookText: {
+    color: '#1877F2',
+    fontSize: 16,
+    fontWeight: '500',
+  },
+});
