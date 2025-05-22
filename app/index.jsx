@@ -19,11 +19,11 @@ export default function HomeScreen() {
         <ThemedWorldImg style={styles.image}/>
       </View>
     
-        <View style={styles.balanceContainer}>
-            <Text style={[styles.headerText, { color: theme ? '#fff' : '#163300' }]}>
-                ONE ACCOUNT FOR{"\n"}ALL THE MONEY IN{"\n"}THE WORLD
-            </Text>
-        </View>
+      <View style={styles.balanceContainer}>
+        <Text style={[styles.headerText, { color: theme ? '#fff' : '#163300' }]}>
+            ONE ACCOUNT FOR{"\n"}ALL THE MONEY IN{"\n"}THE WORLD
+        </Text>
+      </View>
 
       <View style={styles.actionsRow}>
         <PrimaryButton title="Log in" onPress={() => router.push('/login')} width='50%' />
@@ -43,6 +43,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
     padding: 16,
   },
   topBar: {
