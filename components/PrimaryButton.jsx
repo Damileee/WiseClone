@@ -7,6 +7,7 @@ export default function PrimaryButton({
   color = '#000',
   border = false,
   width = '100%',
+  marginTop,
 }) {
   return (
     <TouchableOpacity
@@ -15,9 +16,10 @@ export default function PrimaryButton({
         styles.button,
         {
           backgroundColor: border ? 'transparent' : backgroundColor,
-          borderWidth: border ? 1.5 : 0,
+          borderWidth: border ? 1 : 0,
           borderColor: backgroundColor,
           width, // Apply dynamic width prop here
+          marginTop: marginTop || 0,
         },
       ]}
     >
