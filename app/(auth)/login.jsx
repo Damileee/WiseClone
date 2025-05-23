@@ -7,15 +7,16 @@ import ThemedView from '../../components/ThemedView';
 import PrimaryButton from '../../components/PrimaryButton';
 
 export default function Login() {
-const [email, setEmail] = useState('')
-const [password, setPassword] = useState('')
-const [focusedInput, setFocusedInput] = useState(false);
-const [showPassword, setShowPassword] = useState(false);
-const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [focusedInput, setFocusedInput] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
 
   const handleSubmit = () => {
-    console.log("Login form submitted", email, password);
-  }
+    console.log('Login form submitted', email, password);
+    router.replace('/(tabs)/home');
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -48,7 +49,11 @@ const [isPasswordFocused, setIsPasswordFocused] = useState(false);
               <TextInput
                 style={[
                   styles.input,
-                  { flex: 1, borderColor: isPasswordFocused ? '#163300' : '#666', borderWidth: isPasswordFocused ? 2 : 1 },
+                  {
+                    flex: 1,
+                    borderColor: isPasswordFocused ? '#163300' : '#666',
+                    borderWidth: isPasswordFocused ? 2 : 1,
+                  },
                 ]}
                 onChangeText={setPassword}
                 value={password}
@@ -83,7 +88,10 @@ const [isPasswordFocused, setIsPasswordFocused] = useState(false);
           {/* Bottom Section */}
           <View style={styles.bottomSection}>
             <View style={styles.faceId}>
-              <Image source={require('../../assets/img/faceId.png')} style={{ width: '15%', height: '40%' }} />
+              <Image
+                source={require('../../assets/img/faceId.png')}
+                style={{ width: '15%', height: '40%' }}
+              />
             </View>
 
             <View style={styles.separator}>
