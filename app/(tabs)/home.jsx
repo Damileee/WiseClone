@@ -1,11 +1,12 @@
-import { View, Text, TextInput, StyleSheet, Pressable, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import ThemedView from '../../components/ThemedView';
 
 export default function Login() {
 
   return (
-    <View style={styles.contentWrapper}>
+    <ThemedView style={styles.contentWrapper} safe={true}>
       <Text>Home page</Text>
-    </View>
+    </ThemedView>
   );
 }
 
