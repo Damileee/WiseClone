@@ -17,15 +17,6 @@ export default function TabsLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="transfer"
-        options={{
-          title: 'Transfer',
-          tabBarIcon: ({ color }) => (
-            <MaterialIcons name="send" size={24} color={color} />
-          ),
-        }}
-      />
     </Tabs>
   );
 }
