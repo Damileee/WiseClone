@@ -7,7 +7,6 @@ export default function AuthLayout() {
       initialRouteName="login" // First screen in auth group
     >
       <Stack.Screen name="login" />
-      <Stack.Screen name="register" />
     </Stack>
   );
 }
