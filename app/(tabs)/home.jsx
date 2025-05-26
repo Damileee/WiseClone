@@ -3,12 +3,18 @@ import { View, ScrollView, StyleSheet } from 'react-native';
 import ThemedView from '../../components/ThemedView';
 import BalanceCard from '../../components/BalanceCard';
 import HeaderWithButtons from '../../components/HeaderWithButtons';
+import TopBar from '../../components/TopBar';
 // import SectionTitle from '../../components/SectionTitle';
 
 export default function Home() {
   return (
     <ThemedView style={styles.container} safe={true}>
       <ScrollView contentContainerStyle={styles.scroll}>
+        <TopBar 
+          onNotificationPress={() => console.log('Notifications')}
+          onEarnPress={() => console.log('Earn')}
+        />
+
         <HeaderWithButtons
           onSend={() => {}}
           onAddMoney={() => {}}
